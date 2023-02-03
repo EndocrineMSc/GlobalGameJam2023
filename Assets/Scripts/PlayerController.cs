@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameName.Player.Movement
+namespace GameName.PlayerHandling
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerController : MonoBehaviour
@@ -11,14 +11,16 @@ namespace GameName.Player.Movement
 
         [SerializeField] private float _speed;
         private SpriteRenderer _spriteRenderer;
+        private Rigidbody2D _rigidbody;
 
         #endregion
 
-        #region Private Functions
+        #region Functions
 
         private void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _rigidbody= GetComponent<Rigidbody2D>();
         }
 
         private void FixedUpdate()
@@ -29,22 +31,17 @@ namespace GameName.Player.Movement
         private void UpdateMovement()
         {
             float x = Input.GetAxisRaw("Horizontal");
-            float y = Input.GetAxisRaw("Vertical");
 
-            Vector3 moveDelta = new(x, y, 0);
-
-            //Swap sprite direction, whether you're going left or right
             if (x > 0)
             {
+                _rigidbody.AddForce(Vector2.right * _speed);
                 _spriteRenderer.flipX = false;
             }
             else if (x < 0)
             {
+                _rigidbody.AddForce(Vector2.left * _speed);
                 _spriteRenderer.flipX= true;
             }
-
-            //movement
-            transform.Translate(_speed * Time.deltaTime * moveDelta);
         }
 
         #endregion
