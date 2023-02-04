@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiggingStation : Station
+public class HealingStation : Station
 {
     protected override void OnPlayerUse()
     {
-        Debug.Log("Digging");
+        Debug.Log("Healing");
     }
 }
