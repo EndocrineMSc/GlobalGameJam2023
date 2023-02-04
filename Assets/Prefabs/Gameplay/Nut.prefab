@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 3067867550102614024}
   - component: {fileID: 3067867550102614027}
   - component: {fileID: 3067867550102614026}
-  - component: {fileID: 3067867550102614029}
-  - component: {fileID: 3067867550102614028}
-  - component: {fileID: 3067867550102614025}
+  - component: {fileID: 3652106904774694795}
+  - component: {fileID: 3734758871411677523}
   m_Layer: 0
   m_Name: Nut
   m_TagString: Untagged
@@ -102,8 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   speed: 20
---- !u!58 &3067867550102614029
-CircleCollider2D:
+--- !u!61 &3652106904774694795
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -116,23 +115,19 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.50000006
---- !u!114 &3067867550102614028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3067867550102614031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22f5c99a99fd0149a15dd4ac5473f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  speed: 0
---- !u!50 &3067867550102614025
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &3734758871411677523
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -146,7 +141,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0

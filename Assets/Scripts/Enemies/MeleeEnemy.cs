@@ -20,8 +20,8 @@ public class MeleeEnemy : Enemy
             case EnemyState.WalkingUp:
                 BasicWalkUp();
                 break;
-            case EnemyState.Attacking:
-                BasicAttackRoutine();
+            case EnemyState.Idle:
+                IdleWaitForAttack();
                 break;
         }
     }

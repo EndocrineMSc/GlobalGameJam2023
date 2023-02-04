@@ -65,17 +65,18 @@ public class Enemy : HealthEntity
         // Detect if the melee enemy is close to the target.
         if (Mathf.Abs(transform.position.x - target.transform.position.x) < attackDistance)
         {
-            ChangeState(EnemyState.Attacking);
+            ChangeState(EnemyState.Idle);
         }
     }
 
-    protected void BasicAttackRoutine()
+    protected void IdleWaitForAttack()
     {
         timeSinceLastAttack += Time.deltaTime;
 
         if (timeSinceLastAttack >= attackCooldown)
         {
             timeSinceLastAttack = 0;
+            ChangeState(EnemyState.Attacking);
             Attack();
         }
     }
