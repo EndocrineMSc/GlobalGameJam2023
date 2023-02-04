@@ -27,39 +27,39 @@ namespace GameName.Buttons
 
         public void StartGame()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.Starting);
         }
 
         public void QuitGame()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.Quit);
 
         }
 
         public void GoToCredits()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.Credits);
 
         }
 
         public void GoToHighscores()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.HighscoreMenu);
         }
 
         public void StartNewGame()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.NewGame);
         }
 
         public void GoToSettings()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.Settings);
         }
 
@@ -69,7 +69,7 @@ namespace GameName.Buttons
         //game before "StartNewGame"
         public void GoToMainMenu()
         {
-            _audioManager.PlaySoundEffect(SFX.ButtonClick);
+            _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
             _instance.SwitchState(GameState.MainMenu);
         }
 
