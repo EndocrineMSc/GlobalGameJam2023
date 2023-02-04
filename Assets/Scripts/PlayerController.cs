@@ -19,6 +19,8 @@ namespace GameName.PlayerHandling
 
         public UnityEvent playerInteracts = new();
 
+        protected Animator anim;
+
         #endregion
 
         #region Functions
@@ -27,6 +29,7 @@ namespace GameName.PlayerHandling
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rigidbody= GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
         }
 
         private void Update()
@@ -50,12 +53,14 @@ namespace GameName.PlayerHandling
             if (x > 0)
             {
                 _rigidbody.AddForce(Vector2.right * _speed);
-                _spriteRenderer.flipX = false;
+                _spriteRenderer.flipX = true;
+                anim.SetTrigger("Move");
             }
             else if (x < 0)
             {
                 _rigidbody.AddForce(Vector2.left * _speed);
-                _spriteRenderer.flipX= true;
+                _spriteRenderer.flipX= false;
+                anim.SetTrigger("Stop");
             }
         }
 

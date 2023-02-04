@@ -96,10 +96,13 @@ namespace GameName.Tree.Traversation
                 float deltaPositions = currentElevatorYPosition - _yAlignPosition;
                 float absoluteDelta = Mathf.Abs(deltaPositions);
 
+                transform.position = new Vector3(transform.position.x, _yAlignPosition);
+                StopElevator();
+                _elevatorIsAligned = true;
+
                 if (absoluteDelta < 0.1f)
                 {
-                    StopElevator();
-                    _elevatorIsAligned = true;
+                    
                 }
                 else if (_rigidbody.velocity == Vector2.zero)
                 {
