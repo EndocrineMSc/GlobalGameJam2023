@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameName.PlayerHandling;
-
+using GameName.Audio;
+using EnumCollection;
 
 namespace GameName.Tree.Traversation
 {
@@ -22,6 +23,7 @@ namespace GameName.Tree.Traversation
         private bool _elevatorIsInBreakPoint;
         private Collider2D _currentElevatorStop;
         private SpriteRenderer _elevatorRenderer;
+        private AudioManager _audioManager;
         [SerializeField] private float _elevatorSpeed = 2f;
 
         #endregion
@@ -34,6 +36,7 @@ namespace GameName.Tree.Traversation
             _playerController = _player.GetComponent<PlayerController>();
             _rigidbody = GetComponent<Rigidbody2D>();
             _elevatorRenderer = GetComponent<SpriteRenderer>();
+            _audioManager = AudioManager.Instance;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -91,8 +94,6 @@ namespace GameName.Tree.Traversation
                 float deltaPositions = currentElevatorYPosition - _yAlignPosition;
                 float absoluteDelta = Mathf.Abs(deltaPositions);
 
-                Debug.Log(absoluteDelta);
-
                 if (absoluteDelta < 0.1f)
                 {
                     StopElevator();
@@ -138,6 +139,7 @@ namespace GameName.Tree.Traversation
                 _rigidbody.velocity = Vector2.up * _elevatorSpeed;
                 _playerController.enabled = false;
                 _isMoving = true;
+                PlayElevatorSound();
                 yield return new WaitForSeconds(0.05f);
                 ResetTopAndBottomBooleans();
                 ResetAlignmentBoolean();
@@ -151,10 +153,16 @@ namespace GameName.Tree.Traversation
                 _rigidbody.velocity = Vector2.down * _elevatorSpeed;
                 _playerController.enabled = false;
                 _isMoving = true;
+                PlayElevatorSound();
                 yield return new WaitForSeconds(0.1f);
                 ResetTopAndBottomBooleans();
                 ResetAlignmentBoolean();
             }
+        }
+
+        private void PlayElevatorSound()
+        {
+            _audioManager.PlaySoundEffect(SFX.SFX_025_Elevator_Move);
         }
 
         private void ResetTopAndBottomBooleans()
