@@ -29,17 +29,17 @@ namespace GameName.Audio
         //Fades music in or out depending on the Fade enum.
         //Uses the enum Track to get a specific Track from the Track-Array
         //Order in Array will be alphabetical
-        public void FadeGameTrack(Track track, Fade fade)
+        public void FadeGameTrack(Track track, Fade fade, float fadeTime = 3)
         {
             AudioSource audioSource = _gameTracks[(int)track];   
 
             if (fade == Fade.In)
             {
-                StartCoroutine(StartFade(audioSource, 3f, 1f));
+                StartCoroutine(StartFade(audioSource, fadeTime, 1f));
             }
             else if (fade == Fade.Out) 
             {
-                StartCoroutine(StartFade(audioSource, 3f, 0f));
+                StartCoroutine(StartFade(audioSource, fadeTime, 0f));
             }
         }
 
