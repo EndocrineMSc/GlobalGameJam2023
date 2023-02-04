@@ -8,6 +8,7 @@ using UnityEngine.Events;
 /// </summary>
 public class HealthEntity : MonoBehaviour
 {
+    [Header("Health")]
     /// <summary>
     /// Gets called when die enemy dies.
     /// </summary>

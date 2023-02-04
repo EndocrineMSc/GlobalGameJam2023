@@ -102,15 +102,16 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  maxLive: 0
+  maxLive: 1
   currentLive: 0
   OnStateChange:
     m_PersistentCalls:
       m_Calls: []
+  walkingSpeed: 80
   attackDirection: 0
   damage: 1
   attackCooldown: 1
-  speed: 110
+  attackDistance: 0.8
   target: {fileID: 0}
 --- !u!50 &6941355546811398341
 Rigidbody2D:
