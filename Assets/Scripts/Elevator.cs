@@ -13,11 +13,15 @@ namespace GameName.Tree.Traversation
         private Player _player;
         private PlayerController _playerController;
         private Rigidbody2D _rigidbody;
+        private float _yAlignPosition;
         private bool _isMoving;
         private bool _playerIsOnElevator;
         private bool _isOnTopPosition;
         private bool _isOnBottomPosition;
+        private bool _elevatorIsAligned;
+        private bool _elevatorIsInBreakPoint;
         private Collider2D _currentElevatorStop;
+        private SpriteRenderer _elevatorRenderer;
         [SerializeField] private float _elevatorSpeed = 2f;
 
         #endregion
@@ -29,6 +33,7 @@ namespace GameName.Tree.Traversation
             _player = Player.Instance;
             _playerController = _player.GetComponent<PlayerController>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            _elevatorRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -51,7 +56,8 @@ namespace GameName.Tree.Traversation
         {
             if (collision.gameObject.name.Contains("ElevatorBreakPoint"))
             {
-                StopElevator();
+                _elevatorIsInBreakPoint = true;
+                _yAlignPosition = SetAlignPosition(collision);
                 CheckIfBottomOrTop(collision);
                 DisableElevatorStopCollider(collision);
                 _playerController.enabled = true;
@@ -70,11 +76,39 @@ namespace GameName.Tree.Traversation
             }
         }
 
-        private void AlignElevator(Collider2D collision)
+        private float SetAlignPosition(Collider2D collision)
         {
-            if (_rigidbody.velocity.y > 1)
+            SpriteRenderer elevatorBreakPointRenderer = collision.gameObject.GetComponent<SpriteRenderer>();
+            float yBorderOfStop = elevatorBreakPointRenderer.bounds.max.y;
+            return yBorderOfStop;
+        }
+
+        private void FixedUpdate()
+        {
+            if (_elevatorIsInBreakPoint && !_elevatorIsAligned)
             {
-                
+                float currentElevatorYPosition = _elevatorRenderer.bounds.max.y;
+                float deltaPositions = currentElevatorYPosition - _yAlignPosition;
+                float absoluteDelta = Mathf.Abs(deltaPositions);
+
+                Debug.Log(absoluteDelta);
+
+                if (absoluteDelta < 0.1f)
+                {
+                    StopElevator();
+                    _elevatorIsAligned = true;
+                }
+                else if (_rigidbody.velocity == Vector2.zero)
+                {
+                    if (deltaPositions > 0)
+                    {
+                        _rigidbody.AddForce(Vector2.down * _elevatorSpeed);
+                    }
+                    else if (deltaPositions < 0)
+                    {
+                        _rigidbody.AddForce(Vector2.up * _elevatorSpeed);
+                    }
+                }
             }
         }
 
@@ -86,36 +120,40 @@ namespace GameName.Tree.Traversation
 
         private void DisableElevatorStopCollider(Collider2D collision)
         {
-                _currentElevatorStop = collision.gameObject.GetComponent<Collider2D>();
-                _currentElevatorStop.enabled = false;
+            _currentElevatorStop = collision.gameObject.GetComponent<Collider2D>();
+            _currentElevatorStop.enabled = false;
         }
 
         private void Update()
         {
-            OnButtonPressMoveElevatorDownwards();
-            OnButtonPressMoveElevatorUpwards();
+            StartCoroutine(OnButtonPressMoveElevatorDownwards());
+            StartCoroutine(OnButtonPressMoveElevatorUpwards());
             SetElevatorStopColliderActive();
         }
 
-        private void OnButtonPressMoveElevatorUpwards()
+        private IEnumerator OnButtonPressMoveElevatorUpwards()
         {
             if (Input.GetKeyDown(KeyCode.W) && _playerIsOnElevator && !_isMoving && !_isOnTopPosition)
             {
                 _rigidbody.velocity = Vector2.up * _elevatorSpeed;
                 _playerController.enabled = false;
                 _isMoving = true;
+                yield return new WaitForSeconds(0.05f);
                 ResetTopAndBottomBooleans();
+                ResetAlignmentBoolean();
             }
         }
 
-        private void OnButtonPressMoveElevatorDownwards()
+        private IEnumerator OnButtonPressMoveElevatorDownwards()
         {
             if (Input.GetKeyDown(KeyCode.S) && _playerIsOnElevator && !_isMoving && !_isOnBottomPosition)
             {
                 _rigidbody.velocity = Vector2.down * _elevatorSpeed;
                 _playerController.enabled = false;
                 _isMoving = true;
+                yield return new WaitForSeconds(0.1f);
                 ResetTopAndBottomBooleans();
+                ResetAlignmentBoolean();
             }
         }
 
@@ -125,14 +163,23 @@ namespace GameName.Tree.Traversation
             _isOnTopPosition = false;
         }
 
+        private void ResetAlignmentBoolean()
+        {
+            _elevatorIsAligned = false;
+            _elevatorIsInBreakPoint = false;
+        }
+
         private void SetElevatorStopColliderActive()
         {
-            float elevatorStopYPosition = _currentElevatorStop.gameObject.transform.position.y;
-            float deltaPosition = Mathf.Abs(transform.position.y - elevatorStopYPosition);
-
-            if (deltaPosition > 1)
+            if (_currentElevatorStop != null)
             {
-                _currentElevatorStop.enabled = true;
+                float elevatorStopYPosition = _currentElevatorStop.gameObject.transform.position.y;
+                float deltaPosition = Mathf.Abs(transform.position.y - elevatorStopYPosition);
+
+                if (deltaPosition > 1)
+                {
+                    _currentElevatorStop.enabled = true;
+                }
             }
         }
         #endregion
