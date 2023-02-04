@@ -11,6 +11,10 @@ TagManager:
   - 
   - Water
   - UI
+  - 
+  - 
+  - Enemy
+  - TreeBark
   - Elevator
   - Floor
   - Interactables
