@@ -61,7 +61,7 @@ namespace GameName
 
                     CloseAllCanvases();
                     Instance._menuScreen.SetActive(true);
-                    AudioManager.Instance.FadeGameTrack(Track.MainMenu, Fade.In);
+                    AudioManager.Instance.FadeGameTrack(Track.Track_001_Tree_of_Peace, Fade.In);
                     break;
 
                 case (GameState.Credits):
@@ -85,8 +85,8 @@ namespace GameName
                     //It plays the Track that is referenced by using a
                     //Track enum in EnumCollection and an enum to decide whether to fade in or out
                     SceneManager.LoadSceneAsync("LevelOne");
-                    AudioManager.Instance.FadeGameTrack(Track.MainMenu, Fade.Out);
-                    AudioManager.Instance.FadeGameTrack(Track.GameTrackOne, Fade.In);
+                    //AudioManager.Instance.FadeGameTrack(Track.Track_001_Tree_of_Peace, Fade.Out);
+                    AudioManager.Instance.FadeGameTrack(Track.Track_001_Tree_of_Peace, Fade.In);
                     break;
 
                 case (GameState.GameOver):
