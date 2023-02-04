@@ -5,6 +5,7 @@ using GameName.PlayerHandling;
 using GameName.Audio;
 using EnumCollection;
 using Unity.VisualScripting;
+using Unity.Burst.CompilerServices;
 
 namespace GameName.Tree.Traversation
 {
@@ -42,7 +43,7 @@ namespace GameName.Tree.Traversation
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.name.Contains("Player") && GetComponent<Collider2D>().bounds.max.y < collision.collider.bounds.min.y)
+            if (collision.gameObject.name.Contains("Player") )
             {
                 _playerIsOnElevator = true;
             }
@@ -95,10 +96,13 @@ namespace GameName.Tree.Traversation
                 float deltaPositions = currentElevatorYPosition - _yAlignPosition;
                 float absoluteDelta = Mathf.Abs(deltaPositions);
 
+                transform.position = new Vector3(transform.position.x, _yAlignPosition);
+                StopElevator();
+                _elevatorIsAligned = true;
+
                 if (absoluteDelta < 0.1f)
                 {
-                    StopElevator();
-                    _elevatorIsAligned = true;
+                    
                 }
                 else if (_rigidbody.velocity == Vector2.zero)
                 {
@@ -135,8 +139,10 @@ namespace GameName.Tree.Traversation
 
         private IEnumerator OnButtonPressMoveElevatorUpwards()
         {
-            if (Input.GetKeyDown(KeyCode.W) && _playerIsOnElevator && !_isMoving && !_isOnTopPosition)
+            if (Input.GetKeyDown(KeyCode.W) && _playerIsOnElevator && !_isMoving && !_isOnTopPosition &&
+                Physics2D.Raycast(transform.position, new Vector3(0, 1, 0), 100, 1))
             {
+                Debug.DrawLine(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.yellow);
                 _rigidbody.velocity = Vector2.up * _elevatorSpeed;
                 _playerController.enabled = false;
                 _isMoving = true;
@@ -149,7 +155,8 @@ namespace GameName.Tree.Traversation
 
         private IEnumerator OnButtonPressMoveElevatorDownwards()
         {
-            if (Input.GetKeyDown(KeyCode.S) && _playerIsOnElevator && !_isMoving && !_isOnBottomPosition)
+            if (Input.GetKeyDown(KeyCode.S) && _playerIsOnElevator && !_isMoving && !_isOnBottomPosition &&
+                Physics2D.Raycast(transform.position, new Vector3(0, 1, 0), 100, 1))
             {
                 _rigidbody.velocity = Vector2.down * _elevatorSpeed;
                 _playerController.enabled = false;
