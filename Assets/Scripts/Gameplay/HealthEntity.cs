@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using GameName.Audio;
 
 /// <summary>
 /// A basic script that give an object health pool and makes it able to take damage and die.
@@ -39,7 +40,7 @@ public class HealthEntity : MonoBehaviour
 
     public virtual void Kill()
     {
-        
+
         if (OnDeath != null)
             OnDeath.Invoke(this);
         

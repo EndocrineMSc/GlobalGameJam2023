@@ -8,21 +8,19 @@ using UnityEngine;
 namespace GameName.PlayerHandling { 
     public class RessourceItem : MonoBehaviour
     {
-
- 
         protected bool _nextToPlayer = false;
         protected bool _isCarried = false;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        public bool IsCarried { get { return _isCarried; } }
 
-        // Update is called once per frame
-        void Update()
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-        
+            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.gravityScale = 0;
+            rigidbody.mass = 1;
+            
+            Collider2D collider = GetComponent<Collider2D>();
+            collider.isTrigger = true;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

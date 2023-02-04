@@ -1,13 +1,15 @@
+using GameName.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EnumCollection;
 
 public class MeleeEnemy : Enemy
 {
+    public SFX[] enemyDeathSound;
 
     private void Start()
     {
-        attackDistance += Random.Range(-0.1f, 0.1f);
         Init();
         ChangeState(EnemyState.WalkingUp);
     }
@@ -32,8 +34,25 @@ public class MeleeEnemy : Enemy
         {
             base.Attack();
 
+            PlayEnemyDeathSound();
             target.Hit(damage);
         }
+    }
+
+    public override void Kill()
+    {
+        AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_015_Enemy_Death1);
+        base.Kill();
+    }
+
+    void PlayEnemyDeathSound()
+    {
+        if (AudioManager.Instance == null)
+            return;
+
+        EnumCollection.SFX soundEffect = enemyDeathSound[Random.Range(0, enemyDeathSound.Length)];
+
+        AudioManager.Instance.PlaySoundEffect(soundEffect);
     }
 
     protected override void ChangeState(EnemyState newState)

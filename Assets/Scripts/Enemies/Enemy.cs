@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public enum AttackDirektion {Left, Right }
 public enum EnemyState {WalkingUp, Attacking, Idle }
+public enum EnemyType {Beetle, FireFly }
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : HealthEntity
@@ -12,6 +13,7 @@ public class Enemy : HealthEntity
     [Header("Enemy")]
     public UnityEvent<EnemyState> OnStateChange;
 
+    public EnemyType enemyType;
     public float walkingSpeed;
 
     [Header("Attack")]
@@ -20,6 +22,7 @@ public class Enemy : HealthEntity
     public float attackCooldown;
     [Tooltip("The distance needed to change from walking to attacking.")]
     public float attackDistance;
+    public float attackDistanceAccuaracyOffset = 0.1f;
 
     protected EnemyState currentState;
     protected float timeSinceLastAttack;
@@ -34,6 +37,7 @@ public class Enemy : HealthEntity
 
     protected override void Init()
     {
+        attackDistance += Random.Range(-attackDistanceAccuaracyOffset, attackDistanceAccuaracyOffset);
         attackDirection = (transform.position.x < 0) ? AttackDirektion.Left : AttackDirektion.Right;
         target = (attackDirection == AttackDirektion.Left) ? TreeBark.leftTreebark : TreeBark.rightTreebark;
 

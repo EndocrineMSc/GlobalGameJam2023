@@ -168,17 +168,20 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
-  maxLive: 1
+  maxLive: 3
   currentLive: 0
   OnStateChange:
     m_PersistentCalls:
       m_Calls: []
+  enemyType: 0
   walkingSpeed: 1.5
   attackDirection: 1
   damage: 1
   attackCooldown: 1
   attackDistance: 1.2
+  attackDistanceAccuaracyOffset: 0.1
   target: {fileID: 0}
+  enemyDeathSound: 0e0000000f000000100000001100000012000000
 --- !u!50 &6941355546811398341
 Rigidbody2D:
   serializedVersion: 4
