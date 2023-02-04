@@ -17,7 +17,7 @@ namespace GameName.PlayerHandling
 
         [SerializeField] public Transform myHand;
 
-        public UnityEvent playerInteracts = new();
+        public UnityEvent playerInteracts;
 
         protected Animator anim;
 

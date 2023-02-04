@@ -10,6 +10,8 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager instance;
 
     public UnityEvent<GameplayStates> OnStateChange;
+    public UnityEvent OnWonGame;
+    public UnityEvent OnLostGame;
 
     [SerializeField]
     private float timeBetweenWavesInSeconds = 40;
@@ -45,8 +47,40 @@ public class GameplayManager : MonoBehaviour
     private void Start()
     {
         ChangeState(GameplayStates.Peace);
+
+        if (TreeBark.leftTreebark != null)
+            TreeBark.leftTreebark.OnDeath.AddListener(TreeBarkDestroyed);
+        else
+            Debug.LogError("Could not find left tree bark");
+
+        if (TreeBark.rightTreebark != null)
+            TreeBark.rightTreebark.OnDeath.AddListener(TreeBarkDestroyed);
+        else
+            Debug.LogError("Could not find right tree bark");
+
     }
 
+    public void WonGame()
+    {
+        Debug.Log("Won Game");
+
+        // TODO: implement.
+        if (OnWonGame != null)
+            OnWonGame.Invoke();
+    }
+
+    public void LostGame()
+    {
+        Debug.Log("Lost Game");
+
+        if (OnLostGame != null)
+            OnLostGame.Invoke();
+    }
+
+    void TreeBarkDestroyed(HealthEntity treeBark)
+    {
+        LostGame();
+    }
 
     void ChangeState(GameplayStates newState)
     {
@@ -65,6 +99,12 @@ public class GameplayManager : MonoBehaviour
                 }
                 break;
             case GameplayStates.Attack:
+                if (wave >= waves.Length)
+                {
+                    WonGame();
+                    return;
+                }
+
                 AudioManager.Instance.FadeGameTrack(EnumCollection.Track.Track_001_Tree_of_Peace, EnumCollection.Fade.Out, 6);
                 AudioManager.Instance.FadeGameTrack(EnumCollection.Track.Track_002_Tree_of_War, EnumCollection.Fade.In, 6);
                 StartCoroutine(SpawnWave(waves[wave]));
@@ -105,6 +145,9 @@ public class GameplayManager : MonoBehaviour
 
             GameObject spawnPrefab = GetPrefabForType(newEnemyData.enemyType);
             Vector3 spawnPosition = (newEnemyData.direction == AttackDirektion.Left) ? leftSpawnPoint.position : rightSpawnPoint.position;
+            if (newEnemyData.enemyType == EnemyType.FireFly)
+                spawnPosition.y += 2;
+            spawnPosition.y += Random.Range(-0.5f, 0.5f);
 
             GameObject newEnemy = Instantiate(spawnPrefab, spawnPosition, Quaternion.identity);
 

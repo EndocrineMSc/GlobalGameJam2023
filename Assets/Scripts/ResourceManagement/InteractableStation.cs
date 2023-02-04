@@ -8,8 +8,8 @@ public class InteractableStation : MonoBehaviour
     public UnityEvent enoughResourcesAllocated;
 
     private float _suckSpeed = 200f;
+    [SerializeField]
     private int _targetResourceAmount = 10;
-    private float _destructionRange;
     private bool _resourceMarkedForDestruction;
 
     public int TargetResourceAmount
@@ -28,8 +28,7 @@ public class InteractableStation : MonoBehaviour
 
     private void Start()
     {
-        _destructionRange = Mathf.Abs(GetComponent<SpriteRenderer>().bounds.max.x - transform.position.x);
-        Debug.Log(_destructionRange);
+
     }
 
     private void AddResource()
@@ -47,16 +46,13 @@ public class InteractableStation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.name.Contains("Resource"))
+        if (collider.gameObject.CompareTag("Resource"))
         {
             RessourceItem resource = collider.gameObject.GetComponent<RessourceItem>();
 
-            if (!resource.IsCarried && !_resourceMarkedForDestruction)
-            {
-                collider.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.6f;
-                collider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * _suckSpeed);            
-                StartCoroutine(DestroyResourceItem(resource));
-            }
+
+            AddResource();
+            Destroy(collider.gameObject);
         }
     }
 
