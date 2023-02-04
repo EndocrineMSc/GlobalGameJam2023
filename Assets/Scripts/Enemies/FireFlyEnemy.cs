@@ -1,3 +1,4 @@
+using GameName.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class FireFlyEnemy : Enemy
 
     protected override void Attack()
     {
+        AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_012_Enemy_Attack3);
         rigi2D.velocity = (target.transform.position - transform.position).normalized * attackSpeed;
     }
 
@@ -40,6 +42,8 @@ public class FireFlyEnemy : Enemy
     {
         if (collision.gameObject.CompareTag("TreeBark"))
         {
+            AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_020_Tree_Damage1);
+
             target.Hit(damage);
             // Kill onself after crashing.
             Kill();
