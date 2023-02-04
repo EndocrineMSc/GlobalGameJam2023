@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 1410640825}
   - component: {fileID: 1410640824}
   - component: {fileID: 1410640823}
+  - component: {fileID: 1410640827}
   - component: {fileID: 1410640822}
   m_Layer: 6
   m_Name: Elevator
@@ -576,6 +577,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410640827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410640821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b4d0d064a3a9e4ba84fdf7163c21b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resourcePrefab: {fileID: 595903629317946697, guid: 4e590d9f5e83d734ba031e1569fb0d28, type: 3}
+  _xSpawnOffset: 0.5
+  _ySpawnOffset: 1
+  _spawnJumpSpeed: 50
+  _spawnCooldown: 5
 --- !u!1 &1475263992
 GameObject:
   m_ObjectHideFlags: 0
