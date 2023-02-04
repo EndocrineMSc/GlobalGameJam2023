@@ -41,15 +41,24 @@ public class Bird : MonoBehaviour
         {
             case EnemyState.WalkingUp:
                 Fly();
-                if (timeSinceLastAttack > attackCooldown)
-                {
-                    attackPosition = enemyPool.GetNextTarget().transform.position;
-                    currentState = EnemyState.Attacking;
-                }
+                CheckForAttack();
                 break;
             case EnemyState.Attacking:
                 Attack();
                 break;
+        }
+    }
+
+    void CheckForAttack()
+    {
+        if (timeSinceLastAttack > attackCooldown)
+        {
+            HealthEntity target = enemyPool.GetNextTarget();
+            if (target != null)
+            {
+                attackPosition = target.gameObject.transform.position;
+                currentState = EnemyState.Attacking;
+            }
         }
     }
 
