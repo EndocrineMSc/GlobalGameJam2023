@@ -8,8 +8,7 @@ using UnityEngine;
 public class EntityPool : MonoBehaviour
 {
 
-    public float poolingDistance = 5;
-
+    public
     List<HealthEntity> pool;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,14 +18,23 @@ public class EntityPool : MonoBehaviour
 
         if (healthEnt != null)
         {
-            pool.Add(healthEnt);
+            AddToPool(healthEnt);
         }
     }
 
-    public Transform GetNextTarget()
+    void AddToPool(HealthEntity newHealthEntity)
     {
-        // TODO: make more robust. Ensure no null.
-        return pool[0].transform;
+        pool.Add(newHealthEntity);
+        newHealthEntity.OnDeath.AddListener(EntityDied);
+    }
+
+    public HealthEntity GetNextTarget()
+    {
+        if (pool.Count > 0)
+            // TODO: make more robust. Ensure no null.
+            return pool[0];
+        else
+            return null;
     }
 
     private void EntityDied(HealthEntity healthEntity)
@@ -35,9 +43,4 @@ public class EntityPool : MonoBehaviour
             pool.Remove(healthEntity);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, poolingDistance);
-    }
 }
