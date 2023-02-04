@@ -33,7 +33,6 @@ namespace GameName.PlayerHandling
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("Event fired");
                 playerInteracts.Invoke();
             }
         }

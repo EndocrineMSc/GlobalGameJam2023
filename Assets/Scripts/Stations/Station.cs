@@ -6,11 +6,10 @@ using UnityEngine;
 
 public abstract class Station : MonoBehaviour
 {
+    protected abstract void OnPlayerUse();
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Trigger");
-        Console.Write("Trigger");
         // Check if player is on top of item
         if (collision.gameObject.name == "Player")
         {
@@ -27,5 +26,4 @@ public abstract class Station : MonoBehaviour
         }
     }
 
-    protected abstract void OnPlayerUse();
 }
