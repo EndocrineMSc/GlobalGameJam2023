@@ -2,25 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : MonoBehaviour
+public class Bird : Animal
 {
     [SerializeField]
     private Transform leftBound;
     [SerializeField]
     private Transform rightBound;
-    [SerializeField]
-    EntityPool enemyPool;
 
     [SerializeField]
     private float flySpeed;
     [SerializeField]
-    private float attackSpeed;
-    public float attackCooldown = 2;
+    HitOnCollision damageCollider;
 
     EnemyState currentState;
     AttackDirektion movementDirection;
     Vector3 movementPosition;
-    float timeSinceLastAttack = 0;
 
     Vector3 attackPosition;
 
@@ -49,14 +45,37 @@ public class Bird : MonoBehaviour
         }
     }
 
+    public override void Upgrade()
+    {
+        base.Upgrade();
+
+        switch (currentUpgradeLevel)
+        {
+            case 1:
+                damageCollider.damage = 1;
+                break;
+            case 2:
+                damageCollider.damage = 2;
+                break;
+            case 3:
+                damageCollider.damage = 3;
+                break;
+            case 4:
+                damageCollider.damage = 4;
+                break;
+        }
+
+    }
+
     void CheckForAttack()
     {
         if (timeSinceLastAttack > attackCooldown)
         {
-            HealthEntity target = enemyPool.GetNextTarget();
+            HealthEntity target = entityPool.GetNextTarget();
             if (target != null)
             {
-                attackPosition = target.gameObject.transform.position;
+                Vector2 enemyMovementOffset = target.gameObject.GetComponent<Rigidbody2D>().velocity;
+                attackPosition = target.gameObject.transform.position + Vector3.right * enemyMovementOffset.x;
                 currentState = EnemyState.Attacking;
             }
         }

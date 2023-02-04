@@ -98,10 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9929dffb56ff38f4683438235424f8f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityPool: {fileID: 0}
   attackCooldown: 3
+  attackSpeed: 2
   nutPrefab: {fileID: 3067867550102614031, guid: 9bfe8ae5d8afcc441a7c764f7939d3af, type: 3}
   nutSpawnPoint: {fileID: 5921499162362175014}
-  entityPool: {fileID: 0}
   currentTarget: {fileID: 0}
 --- !u!1 &5921499162362175013
 GameObject:

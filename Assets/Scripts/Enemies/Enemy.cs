@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public enum AttackDirektion {Left, Right }
 public enum EnemyState {WalkingUp, Attacking, Idle }
+public enum EnemyType {Beetle, FireFly }
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : HealthEntity
@@ -12,6 +13,7 @@ public class Enemy : HealthEntity
     [Header("Enemy")]
     public UnityEvent<EnemyState> OnStateChange;
 
+    public EnemyType enemyType;
     public float walkingSpeed;
 
     [Header("Attack")]
