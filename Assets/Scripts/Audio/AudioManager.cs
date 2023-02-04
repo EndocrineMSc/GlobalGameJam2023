@@ -88,7 +88,7 @@ namespace GameName.Audio
         private List<AudioSource> BuildGameTrackList()
         {
             AudioClip[] _gameTrackArray = Resources.LoadAll<AudioClip>("GameTracks");
-            List<AudioSource> _tempList = new();
+            List<AudioSource> _tempList = new List<AudioSource>();
 
             foreach (AudioClip _clip in _gameTrackArray)
             {
@@ -100,6 +100,7 @@ namespace GameName.Audio
                 audioSource.playOnAwake = true;
                 audioSource.outputAudioMixerGroup = _music;
 
+                audioSource.Play();
                 _tempList.Add(audioSource);
             }
             return _tempList;
