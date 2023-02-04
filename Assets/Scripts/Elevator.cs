@@ -4,6 +4,7 @@ using UnityEngine;
 using GameName.PlayerHandling;
 using GameName.Audio;
 using EnumCollection;
+using Unity.VisualScripting;
 
 namespace GameName.Tree.Traversation
 {
@@ -41,7 +42,7 @@ namespace GameName.Tree.Traversation
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.name.Contains("Player"))
+            if (collision.gameObject.name.Contains("Player") && GetComponent<Collider2D>().bounds.max.y < collision.collider.bounds.min.y)
             {
                 _playerIsOnElevator = true;
             }
