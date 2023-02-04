@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1012561507905143519}
   m_Layer: 9
   m_Name: TreeBark
-  m_TagString: Untagged
+  m_TagString: TreeBark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,4 +149,6 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+  maxLive: 0
+  currentLive: 0
   myDirection: 0

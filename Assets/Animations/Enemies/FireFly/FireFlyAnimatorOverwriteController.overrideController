@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FireFlyAnimatorOverwriteController
+  m_Controller: {fileID: 9100000, guid: 93ba107af1203474ba822d7c87733e56, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 877af5e1711dca2458fab4bcdab31084, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 48c80a8a706dbb1418fbac343305a977, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 909f87b4888b46a45a666ec9eb355ed7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a30e86281312d9249b63bf87795fa3a7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5126c2f2128e7434cb9d3d95310d81c5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 03cdfb88fdcfcf34d902cdb0408d05de, type: 2}

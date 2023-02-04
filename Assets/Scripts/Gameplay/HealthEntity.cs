@@ -8,6 +8,7 @@ using UnityEngine.Events;
 /// </summary>
 public class HealthEntity : MonoBehaviour
 {
+    [Header("Health")]
     /// <summary>
     /// Gets called when die enemy dies.
     /// </summary>
@@ -38,9 +39,10 @@ public class HealthEntity : MonoBehaviour
 
     public virtual void Kill()
     {
+        
         if (OnDeath != null)
             OnDeath.Invoke(this);
-
+        
         Destroy(this.gameObject);
     }
 }
