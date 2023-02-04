@@ -313,7 +313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679122195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: -0.12, z: 0}
+  m_LocalPosition: {x: -12.92, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -334,7 +334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 919983262355628538, guid: 9801fc49e7a27f74897c437ced842c1f, type: 3}
   spawnCooldown: 3
-  spawnPos: {fileID: 0}
+  spawnTranform: {fileID: 0}
+  yOffsetAccuracy: 0.6
 --- !u!4 &740243025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7888234199534075714, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
@@ -458,7 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 6941355546811398338, guid: a9b2ecf90953f3045840cfc473ce42aa, type: 3}
   spawnCooldown: 1.5
-  spawnPos: {fileID: 0}
+  spawnTranform: {fileID: 0}
+  yOffsetAccuracy: 0
 --- !u!1 &1300771339
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,6 +594,10 @@ PrefabInstance:
     - target: {fileID: 5921499161496103836, guid: 94bff3207522c6e42842b791e22b5150, type: 3}
       propertyPath: m_Name
       value: Squirrel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921499161496103836, guid: 94bff3207522c6e42842b791e22b5150, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5921499161496103838, guid: 94bff3207522c6e42842b791e22b5150, type: 3}
       propertyPath: m_RootOrder
@@ -833,11 +839,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7888234199534075714, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.473
+      value: -0.469
       objectReference: {fileID: 0}
     - target: {fileID: 7888234199534075714, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.35943
+      value: -0.324
       objectReference: {fileID: 0}
     - target: {fileID: 7888234199534075714, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
       propertyPath: m_LocalPosition.z
@@ -873,7 +879,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7888234199534075715, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
       propertyPath: m_Name
-      value: TreeBark (1)
+      value: TreeBarkLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
@@ -1278,7 +1284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7888234199534075715, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}
       propertyPath: m_Name
-      value: TreeBark
+      value: TreeBarkRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b60a63921fd7a489b540bfcb167903, type: 3}

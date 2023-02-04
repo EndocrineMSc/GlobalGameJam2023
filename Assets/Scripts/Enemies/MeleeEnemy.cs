@@ -7,7 +7,6 @@ public class MeleeEnemy : Enemy
 
     private void Start()
     {
-        attackDistance += Random.Range(-0.1f, 0.1f);
         Init();
         ChangeState(EnemyState.WalkingUp);
     }

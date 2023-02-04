@@ -9,7 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     float spawnCooldown = 2;
     [SerializeField]
-    Transform spawnPos;
+    Transform spawnTranform;
+    [SerializeField]
+    float yOffsetAccuracy = 0;
 
     float timeSinceLastSpawn = 0;
 
@@ -27,7 +29,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
+        Vector3 spawnPos = ((spawnTranform != null) ? spawnTranform.position : transform.position) + Random.Range(-yOffsetAccuracy, yOffsetAccuracy) * Vector3.up;
         // Try to spawn the new enemy at the spawn point if it is not null.
-        Instantiate(enemyToSpawn, (spawnPos != null) ? spawnPos.position : transform.position, Quaternion.identity);
+        Instantiate(enemyToSpawn, spawnPos, Quaternion.identity);
     }
 }

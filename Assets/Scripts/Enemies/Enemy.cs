@@ -20,6 +20,7 @@ public class Enemy : HealthEntity
     public float attackCooldown;
     [Tooltip("The distance needed to change from walking to attacking.")]
     public float attackDistance;
+    public float attackDistanceAccuaracyOffset = 0.1f;
 
     protected EnemyState currentState;
     protected float timeSinceLastAttack;
@@ -34,6 +35,7 @@ public class Enemy : HealthEntity
 
     protected override void Init()
     {
+        attackDistance += Random.Range(-attackDistanceAccuaracyOffset, attackDistanceAccuaracyOffset);
         attackDirection = (transform.position.x < 0) ? AttackDirektion.Left : AttackDirektion.Right;
         target = (attackDirection == AttackDirektion.Left) ? TreeBark.leftTreebark : TreeBark.rightTreebark;
 
