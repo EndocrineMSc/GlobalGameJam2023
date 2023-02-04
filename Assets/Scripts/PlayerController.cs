@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace GameName.PlayerHandling
 {
@@ -13,6 +15,10 @@ namespace GameName.PlayerHandling
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody;
 
+        [SerializeField] public Transform myHand;
+
+        public UnityEvent playerInteracts = new();
+
         #endregion
 
         #region Functions
@@ -23,9 +29,19 @@ namespace GameName.PlayerHandling
             _rigidbody= GetComponent<Rigidbody2D>();
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Event fired");
+                playerInteracts.Invoke();
+            }
+        }
+
         private void FixedUpdate()
         {
             UpdateMovement();
+
         }
 
         private void UpdateMovement()
