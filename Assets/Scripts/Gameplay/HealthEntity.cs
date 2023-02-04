@@ -39,9 +39,10 @@ public class HealthEntity : MonoBehaviour
 
     public virtual void Kill()
     {
+        
         if (OnDeath != null)
             OnDeath.Invoke(this);
-
+        
         Destroy(this.gameObject);
     }
 }

@@ -54,7 +54,7 @@ public class Enemy : HealthEntity
         currentState = newState;
 
         if(newState == EnemyState.WalkingUp)
-            rigi2D.velocity = ((attackDirection == AttackDirektion.Left) ? Vector2.right : Vector2.left) * walkingSpeed * Time.deltaTime;
+            rigi2D.velocity = ((attackDirection == AttackDirektion.Left) ? Vector2.right : Vector2.left) * walkingSpeed;
 
         if (OnStateChange != null)
             OnStateChange.Invoke(newState);

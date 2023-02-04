@@ -55,7 +55,7 @@ MonoBehaviour:
   OnStateChange:
     m_PersistentCalls:
       m_Calls: []
-  walkingSpeed: 140
+  walkingSpeed: 2.5
   attackDirection: 0
   damage: 5
   attackCooldown: 3
