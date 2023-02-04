@@ -27,6 +27,7 @@ namespace EnumCollection
     {
         Track_001_Tree_of_Peace,
         Track_002_Tree_of_War,
+        Track_003_Brootal_Nature,
     }
 
     public enum SFX
