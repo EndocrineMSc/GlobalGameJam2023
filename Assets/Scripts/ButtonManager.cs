@@ -45,10 +45,10 @@ namespace GameName.Buttons
 
         }
 
-        public void GoToHighscores()
+        public void GoToVictory()
         {
             _audioManager.PlaySoundEffect(SFX.SFX_001_ButtonClick);
-            _instance.SwitchState(GameState.HighscoreMenu);
+            _instance.SwitchState(GameState.Victory);
         }
 
         public void StartNewGame()

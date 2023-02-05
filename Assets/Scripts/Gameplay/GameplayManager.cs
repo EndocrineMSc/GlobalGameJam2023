@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using GameName.Audio;
+using GameName;
+
 public enum GameplayStates {Attack, WaitForEndOfAttack, Peace}
 
 public class GameplayManager : MonoBehaviour
@@ -37,6 +39,9 @@ public class GameplayManager : MonoBehaviour
     
     int currentWave = 0;
 
+    [SerializeField] private GameObject _gameOverCanvas;
+    [SerializeField] private GameObject _victoryCanvas;
+
     private void Awake()
     {
         if (instance != null)
@@ -69,6 +74,8 @@ public class GameplayManager : MonoBehaviour
         // TODO: implement.
         if (OnWonGame != null)
             OnWonGame.Invoke();
+
+        _victoryCanvas.SetActive(true);
     }
 
     public void LostGame()
@@ -77,6 +84,8 @@ public class GameplayManager : MonoBehaviour
 
         if (OnLostGame != null)
             OnLostGame.Invoke();
+
+        _gameOverCanvas.SetActive(true);
     }
 
     void TreeBarkDestroyed(HealthEntity treeBark)
@@ -100,7 +109,7 @@ public class GameplayManager : MonoBehaviour
             case GameplayStates.WaitForEndOfAttack:
                 if (enemiesLeft <= 0)
                 {
-                    ChangeState(GameplayStates.Peace);
+                    ChangeState(GameplayStates.Peace);  
 
                     if (OnWaveOvercome != null)
                         OnWaveOvercome.Invoke(currentWave - 1);
