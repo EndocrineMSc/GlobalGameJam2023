@@ -118,6 +118,9 @@ namespace GameName.Tree.Traversation
                         _rigidbody.AddForce(Vector2.up * _elevatorSpeed);
                     }
                 }
+
+                // Update Elevator rope
+
             }
         }
 
