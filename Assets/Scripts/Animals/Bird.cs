@@ -52,16 +52,24 @@ public class Bird : Animal
         switch (currentUpgradeLevel)
         {
             case 1:
-                damageCollider.damage = 1;
+                damageCollider.damage = 2;
+                attackCooldown = 2.75f;
+                attackSpeed = 9;
                 break;
             case 2:
-                damageCollider.damage = 2;
+                damageCollider.damage = 3;
+                attackCooldown = 2.5f;
+                attackSpeed = 10;
                 break;
             case 3:
-                damageCollider.damage = 3;
+                damageCollider.damage = 4;
+                attackCooldown = 2.25f;
+                attackSpeed = 11;
                 break;
             case 4:
-                damageCollider.damage = 4;
+                damageCollider.damage = 5;
+                attackCooldown = 2f;
+                attackSpeed = 12;
                 break;
         }
 

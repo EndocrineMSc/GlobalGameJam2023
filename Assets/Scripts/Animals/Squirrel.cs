@@ -10,6 +10,11 @@ public class Squirrel : Animal
     [SerializeField]
     HealthEntity currentTarget;
 
+    private void Start()
+    {
+        damage = 1;
+    }
+
     private void Update()
     {
         timeSinceLastAttack += Time.deltaTime;
@@ -29,16 +34,21 @@ public class Squirrel : Animal
         switch (currentUpgradeLevel)
         {
             case 1:
-                damage = 1;
+                damage = 2;
+                attackCooldown = 1.5f;
                 break;
             case 2:
-                damage = 2;
+                damage = 3;
+                attackCooldown = 2;
+                attackCooldown = 1.15f;
                 break;
             case 3:
-                damage = 3;
+                damage = 4;
+                attackCooldown = 1f;
                 break;
             case 4:
-                damage = 4;
+                damage = 5;
+                attackCooldown = 0.75f;
                 break;
         }
     }

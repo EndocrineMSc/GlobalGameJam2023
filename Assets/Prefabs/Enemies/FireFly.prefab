@@ -56,10 +56,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   enemyType: 0
-  walkingSpeed: 2.5
+  walkingSpeed: 4
   attackDirection: 0
   damage: 5
-  attackCooldown: 3
+  attackCooldown: 1
   attackDistance: 3
   attackDistanceAccuaracyOffset: 0.5
   target: {fileID: 0}

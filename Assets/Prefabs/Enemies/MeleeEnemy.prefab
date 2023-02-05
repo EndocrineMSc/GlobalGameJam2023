@@ -177,7 +177,7 @@ MonoBehaviour:
   walkingSpeed: 1.5
   attackDirection: 1
   damage: 1
-  attackCooldown: 1
+  attackCooldown: 2
   attackDistance: 1.2
   attackDistanceAccuaracyOffset: 0.4
   target: {fileID: 0}

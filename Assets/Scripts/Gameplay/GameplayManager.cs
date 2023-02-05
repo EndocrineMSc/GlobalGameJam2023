@@ -10,6 +10,8 @@ public class GameplayManager : MonoBehaviour
     public static GameplayManager instance;
 
     public UnityEvent<GameplayStates> OnStateChange;
+    public UnityEvent<int> OnWaveStartSpawning;
+    public UnityEvent<int> OnWaveOvercome;
     public UnityEvent OnWonGame;
     public UnityEvent OnLostGame;
 
@@ -33,7 +35,7 @@ public class GameplayManager : MonoBehaviour
 
     int enemiesLeft = 0;
     
-    int wave = 0;
+    int currentWave = 0;
 
     private void Awake()
     {
@@ -87,28 +89,34 @@ public class GameplayManager : MonoBehaviour
         switch (newState)
         {
             case GameplayStates.Peace:
+                if(currentWave >= waves.Length)
+                    WonGame();
+                else
+                    StartCoroutine(WaitForNextWave());
+
                 AudioManager.Instance.FadeGameTrack(EnumCollection.Track.Track_001_Tree_of_Peace, EnumCollection.Fade.In, 6);
                 AudioManager.Instance.FadeGameTrack(EnumCollection.Track.Track_002_Tree_of_War, EnumCollection.Fade.Out, 6);
-                StartCoroutine(WaitForNextWave());
                 break;
             case GameplayStates.WaitForEndOfAttack:
                 if (enemiesLeft <= 0)
                 {
                     ChangeState(GameplayStates.Peace);
+
+                    if (OnWaveOvercome != null)
+                        OnWaveOvercome.Invoke(currentWave - 1);
                     return;
                 }
                 break;
             case GameplayStates.Attack:
-                if (wave >= waves.Length)
+                if (currentWave >= waves.Length)
                 {
-                    WonGame();
                     return;
                 }
 
                 AudioManager.Instance.FadeGameTrack(EnumCollection.Track.Track_001_Tree_of_Peace, EnumCollection.Fade.Out, 6);
                 AudioManager.Instance.FadeGameTrack(EnumCollection.Track.Track_002_Tree_of_War, EnumCollection.Fade.In, 6);
-                StartCoroutine(SpawnWave(waves[wave]));
-                wave++;
+                StartCoroutine(SpawnWave(waves[currentWave]));
+                currentWave++;
                 break;
         }
 
@@ -126,6 +134,9 @@ public class GameplayManager : MonoBehaviour
 
     IEnumerator SpawnWave(EnemyWave enemyWave)
     {
+        if (OnWaveStartSpawning != null)
+            OnWaveStartSpawning.Invoke(currentWave);
+
         List<EnemySet> spawnPool = new List<EnemySet>();
 
         // Initialize spawn list.
@@ -189,6 +200,11 @@ public class GameplayManager : MonoBehaviour
         enemiesLeft--;
 
         if (enemiesLeft <= 0 && currentState == GameplayStates.WaitForEndOfAttack)
+        {
             ChangeState(GameplayStates.Peace);
+
+            if (OnWaveOvercome != null)
+                OnWaveOvercome.Invoke(currentWave - 1);
+        }
     }
 }
