@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameName.Audio;
 
 public class Slime : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class Slime : MonoBehaviour
             if (enemy != null)
                 enemy.Hit(damage);
         }
+
+        AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_030_SlimeDrop1);
 
         Instantiate(explodeParticles, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
