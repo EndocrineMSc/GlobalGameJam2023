@@ -23,7 +23,9 @@ namespace GameName
         [SerializeField] private GameObject _menuScreen;
         [SerializeField] private GameObject _creditsScreen;
         [SerializeField] private GameObject _settingsScreen;
-        [SerializeField] private GameObject _highscoreScreen;        
+        [SerializeField] private GameObject _highscoreScreen;
+        [SerializeField] private GameObject _gameOverScreen;
+        [SerializeField] private GameObject _victoryScreen;
 
         #endregion
 
@@ -74,9 +76,8 @@ namespace GameName
                     Instance._settingsScreen.SetActive(true);
                     break;   
 
-                case (GameState.HighscoreMenu):
-                    CloseAllCanvases();
-                    Instance._highscoreScreen.SetActive(true);
+                case (GameState.Victory):
+                    SceneManager.LoadSceneAsync("EndGameScene");
                     break; 
 
                 case (GameState.Starting):
@@ -90,11 +91,10 @@ namespace GameName
                     break;
 
                 case (GameState.GameOver):
-                    //do end of game stuff here
+                    SceneManager.LoadSceneAsync("EndGameScene");
                     break;
 
                 case (GameState.NewGame):
-                    //do reset game stuff here, in case player restarts in-game
                     break;
 
                 case (GameState.Quit):
@@ -117,6 +117,8 @@ namespace GameName
             Instance._creditsScreen.SetActive(false);
             Instance._settingsScreen.SetActive(false);
             Instance._highscoreScreen.SetActive(false);
+            Instance._gameOverScreen.SetActive(false);
+            Instance._victoryScreen.SetActive(false);
         }
 
         //Awake, so that it runs before the Start Functions of other
