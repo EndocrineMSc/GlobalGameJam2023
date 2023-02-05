@@ -15,7 +15,9 @@ namespace GameName.PlayerHandling
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody;
 
-        public UnityEvent playerInteracts = new();
+        [SerializeField] public Transform myHand;
+
+        public UnityEvent playerInteracts;
 
         protected Animator anim;
 
@@ -41,6 +43,7 @@ namespace GameName.PlayerHandling
         private void FixedUpdate()
         {
             UpdateMovement();
+
         }
 
         private void UpdateMovement()

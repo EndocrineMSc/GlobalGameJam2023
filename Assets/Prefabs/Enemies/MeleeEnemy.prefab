@@ -181,7 +181,7 @@ MonoBehaviour:
   attackDistance: 1.2
   attackDistanceAccuaracyOffset: 0.4
   target: {fileID: 0}
-  enemyDeathSound: 0e0000000f000000100000001100000012000000
+  enemyDeathSound: 0e0000000f0000001000000011000000
 --- !u!50 &6941355546811398341
 Rigidbody2D:
   serializedVersion: 4
