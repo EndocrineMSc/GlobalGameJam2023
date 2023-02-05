@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameName.Audio;
 
 public class Bird : Animal
 {
@@ -19,7 +20,6 @@ public class Bird : Animal
     Vector3 movementPosition;
 
     Vector3 attackPosition;
-
 
     private void Start()
     {
@@ -126,5 +126,7 @@ public class Bird : Animal
             currentState = EnemyState.WalkingUp;
             timeSinceLastAttack = 0;
         }
+
+        AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_026_BirdAttack1);
     }
 }

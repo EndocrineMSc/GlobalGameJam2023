@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameName.Audio;
 
 public class Squirrel : Animal
 {
@@ -63,6 +64,8 @@ public class Squirrel : Animal
         Bullet newBullet = Instantiate(nutPrefab, nutSpawnPoint.position, Quaternion.identity).GetComponent<Bullet>();
         newBullet.SetDirection(currentTarget.transform.position - nutSpawnPoint.position);
         newBullet.damage = damage;
+
+        AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_033_SquirrelAttack1);
     }
 
     void FindNewTarget()
