@@ -12,6 +12,12 @@ public class UpgradeManager : MonoBehaviour
     private Bird leftBird;
     [SerializeField]
     private Bird rightBird;
+    [SerializeField]
+    Transform slimeLeftPos;
+    [SerializeField]
+    Transform slimeRightPos;
+    [SerializeField]
+    GameObject slimePrefab;
 
     private void Start()
     {
@@ -53,5 +59,11 @@ public class UpgradeManager : MonoBehaviour
             rightBird.gameObject.SetActive(true);
         else
             rightBird.Upgrade();
+    }
+
+    public void SpawnSpecialAttack()
+    {
+        Instantiate(slimePrefab, slimeLeftPos.position, Quaternion.identity);
+        Instantiate(slimePrefab, slimeRightPos.position, Quaternion.identity);
     }
 }
