@@ -53,14 +53,18 @@ namespace GameName.PlayerHandling
             if (x > 0)
             {
                 _rigidbody.AddForce(Vector2.right * _speed);
-                _spriteRenderer.flipX = true;
-                anim.SetTrigger("Move");
+                _spriteRenderer.flipX = false;
+                anim.SetBool("Walking", true);
             }
             else if (x < 0)
             {
                 _rigidbody.AddForce(Vector2.left * _speed);
-                _spriteRenderer.flipX= false;
+                _spriteRenderer.flipX= true;
                 anim.SetTrigger("Stop");
+                anim.SetBool("Walking", true);
+            } else
+            {
+                anim.SetBool("Walking", false);
             }
         }
 
