@@ -34,14 +34,14 @@ public class MeleeEnemy : Enemy
         {
             base.Attack();
 
-            PlayEnemyDeathSound();
             target.Hit(damage);
+            ChangeState(EnemyState.Idle);
         }
     }
 
     public override void Kill()
     {
-        AudioManager.Instance.PlaySoundEffect(EnumCollection.SFX.SFX_015_Enemy_Death1);
+        PlayEnemyDeathSound();
         base.Kill();
     }
 

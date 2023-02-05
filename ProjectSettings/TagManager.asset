@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TreeBark
+  - Resource
   layers:
   - Default
   - TransparentFX
@@ -13,17 +14,13 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Player
   - Enemy
   - TreeBark
   - Elevator
   - Floor
   - Interactables
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Resources
   - 
   - 
   - 

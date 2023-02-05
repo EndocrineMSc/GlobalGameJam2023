@@ -98,12 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2800af8b2daf2a541bdcff02431cfb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityPool: {fileID: 0}
+  attackCooldown: 3
+  attackSpeed: 8
   leftBound: {fileID: 0}
   rightBound: {fileID: 0}
-  enemyPool: {fileID: 0}
   flySpeed: 2
-  attackSpeed: 8
-  attackCooldown: 3
+  damageCollider: {fileID: 770028526520193373}
 --- !u!1 &770028526520193371
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,4 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a981a65ff519f4ab4a1935b66583c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 1

@@ -13,6 +13,9 @@ namespace GameName.Tree.Traversation
     {
         #region Fields
 
+        [SerializeField]
+        LayerMask playerLayer;
+
         private Player _player;
         private PlayerController _playerController;
         private Rigidbody2D _rigidbody;
@@ -140,7 +143,7 @@ namespace GameName.Tree.Traversation
         private IEnumerator OnButtonPressMoveElevatorUpwards()
         {
             if (Input.GetKeyDown(KeyCode.W) && _playerIsOnElevator && !_isMoving && !_isOnTopPosition &&
-                Physics2D.Raycast(transform.position, new Vector3(0, 1, 0), 100, 1))
+                Physics2D.Raycast(transform.position, new Vector3(0, 1, 0), 100, playerLayer))
             {
                 Debug.DrawLine(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.yellow);
                 _rigidbody.velocity = Vector2.up * _elevatorSpeed;
@@ -156,7 +159,7 @@ namespace GameName.Tree.Traversation
         private IEnumerator OnButtonPressMoveElevatorDownwards()
         {
             if (Input.GetKeyDown(KeyCode.S) && _playerIsOnElevator && !_isMoving && !_isOnBottomPosition &&
-                Physics2D.Raycast(transform.position, new Vector3(0, 1, 0), 100, 1))
+                Physics2D.Raycast(transform.position, new Vector3(0, 1, 0), 100, playerLayer))
             {
                 _rigidbody.velocity = Vector2.down * _elevatorSpeed;
                 _playerController.enabled = false;

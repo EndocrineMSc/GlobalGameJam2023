@@ -109,7 +109,7 @@ namespace GameName.Audio
         private List<AudioSource> BuildSoundEffectList()
         {
             AudioClip[] _soundEffectArray = Resources.LoadAll<AudioClip>("SoundEffects");
-            List<AudioSource> _tempList = new();
+            List<AudioSource> _tempList = new List<AudioSource>();
 
             foreach (AudioClip _clip in _soundEffectArray)
             {

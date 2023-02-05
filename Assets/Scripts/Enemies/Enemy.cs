@@ -87,7 +87,6 @@ public class Enemy : HealthEntity
 
     protected virtual void Attack()
     {
-        timeSinceLastAttack = 0;
     }
 }
    
