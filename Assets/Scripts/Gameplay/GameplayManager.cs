@@ -67,6 +67,7 @@ public class GameplayManager : MonoBehaviour
 
     }
 
+    [ContextMenu("Win")]
     public void WonGame()
     {
         Debug.Log("Won Game");
@@ -78,6 +79,7 @@ public class GameplayManager : MonoBehaviour
         _victoryCanvas.SetActive(true);
     }
 
+    [ContextMenu("Lose")]
     public void LostGame()
     {
         Debug.Log("Lost Game");

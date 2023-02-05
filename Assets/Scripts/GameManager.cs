@@ -113,12 +113,14 @@ namespace GameName
         //closes all canvases, meant for state-changes in SwitchState()
         private void CloseAllCanvases()
         {
-            Instance._menuScreen.SetActive(false);
-            Instance._creditsScreen.SetActive(false);
-            Instance._settingsScreen.SetActive(false);
-            Instance._highscoreScreen.SetActive(false);
-            Instance._gameOverScreen.SetActive(false);
-            Instance._victoryScreen.SetActive(false);
+            if(Instance._menuScreen != null)
+                Instance._menuScreen.SetActive(false);
+            if (Instance._creditsScreen != null)
+                Instance._creditsScreen.SetActive(false);
+            if (Instance._settingsScreen != null)
+                Instance._settingsScreen.SetActive(false);
+            if (Instance._highscoreScreen != null)
+                Instance._highscoreScreen.SetActive(false);
         }
 
         //Awake, so that it runs before the Start Functions of other
