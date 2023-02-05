@@ -84,7 +84,7 @@ namespace GameName
                     //PlayGameTrack is a Method in the AudioManager
                     //It plays the Track that is referenced by using a
                     //Track enum in EnumCollection and an enum to decide whether to fade in or out
-                    SceneManager.LoadSceneAsync("TreeScene");
+                    SceneManager.LoadSceneAsync(1);
                     AudioManager.Instance.FadeGameTrack(Track.Track_003_Brootal_Nature, Fade.Out);
                     AudioManager.Instance.FadeGameTrack(Track.Track_001_Tree_of_Peace, Fade.In);
                     break;
